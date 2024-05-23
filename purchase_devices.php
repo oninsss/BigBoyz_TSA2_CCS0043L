@@ -15,7 +15,7 @@
         ['id' => 2, 'device_name' => 'Laptop', 'price' => 1000, 'quantity' => 5],
         ['id' => 3, 'device_name' => 'Tablet', 'price' => 300, 'quantity' => 8]
     ];
-
+    //goes back to a dummy .php process_purchase.php
     if (!empty($devices)) {
         echo "<form action='process_purchase.php' method='POST'>";
         echo "<table>";
