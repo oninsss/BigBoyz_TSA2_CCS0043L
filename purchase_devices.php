@@ -27,8 +27,8 @@ if (!empty($devices)) {
 
         echo "</table>";
         echo "<button type='submit' name='submit'>Calculate Total</button>";
-        echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
         echo "</form>";
+        echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
     } elseif (isset($_POST['submit'])) { // Display confirmation message after purchase
         foreach ($_POST['quantity'] as $id => $quantity) {
             $_SESSION['quantity'][$id] = $quantity;
@@ -56,6 +56,7 @@ if (!empty($devices)) {
         echo "<p>Total: {$total}</p>";
         echo "<button type='submit' name='confirm'>Confirm Purchase</button>";
         echo "</form>";
+        echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
         echo "<br>";
     } elseif (isset($_POST['confirm'])) { // Display confirmation message after purchase
         echo "<p>Thank you for your purchase!</p>";
