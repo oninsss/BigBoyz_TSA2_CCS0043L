@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Sample devices data (can be fetched from the database)
+// Retrieve devices from session
 $devices = isset($_SESSION['devices']) ? $_SESSION['devices'] : [];
 
 // Function to retrieve device details by ID
-function getDeviceById($devices, $id) {
+function POSTDeviceById($devices, $name) {
     foreach ($devices as $device) {
-        if ($device['id'] == $id) {
+        if ($device['name'] == $name) {
             return $device;
         }
     }
@@ -15,13 +15,13 @@ function getDeviceById($devices, $id) {
 }
 
 // Check if device ID is provided in the URL
-if (isset($_GET['id'])) {
-    $deviceId = $_GET['id'];
-    $selectedDevice = getDeviceById($devices, $deviceId);
+if (isset($_POST['name'])) {
+    $deviceId = $_POST['name'];
+    $selectedDevice = POSTDeviceById($devices, $deviceId);
 
     if ($selectedDevice) {
         $name = $selectedDevice['name'];
-        $description = $selectedDevice['description'];
+        $quantity = $selectedDevice['quantity'];
         $price = $selectedDevice['price'];
     } else {
         // Device not found, handle the error
@@ -53,7 +53,7 @@ if (isset($_GET['id'])) {
                 <span class="detail-label">Name:</span> <?php echo $name; ?>
             </div>
             <div class="detail-item">
-                <span class="detail-label">Description:</span> <?php echo $description; ?>
+                <span class="detail-label">Quantity:</span> <?php echo $quantity; ?>
             </div>
             <div class="detail-item">
                 <span class="detail-label">Price:</span> <?php echo $price; ?>

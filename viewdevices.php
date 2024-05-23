@@ -13,7 +13,7 @@ function displayDevices($devices)
             echo "<div>{$device['name']} (Quantity: {$device['quantity']})</div>";
             echo "<div class='actions'>";
             echo "<a href='purchase_devices.php?id={$device['name']}'>Buy</a> | ";
-            echo "<a href='view_single_device.php?id={$device['name']}'>View Details</a> | ";
+            echo "<a href='deviceDetails.php?id={$device['name']}'>View Details</a> | ";
             echo "<a href='edit_device.php?id={$device['name']}'>Edit</a> | ";
             echo "<a href='delete_device.php?id={$device['name']}'>Delete</a>";
             echo "</div>";
