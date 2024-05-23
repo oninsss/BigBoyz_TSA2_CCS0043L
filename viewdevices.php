@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+// Sample devices data (can be fetched from the database)
+$devices = [
+    ['id' => 1, 'name' => 'Laptop', 'quantity' => 10, 'price' => 1000],
+    ['id' => 2, 'name' => 'Smartphone', 'quantity' => 20, 'price' => 800],
+    ['id' => 3, 'name' => 'Tablet', 'quantity' => 15, 'price' => 500]
+];
+
 // Function to display devices
 function displayDevices($devices)
 {
@@ -12,10 +19,10 @@ function displayDevices($devices)
             echo "<li>";
             echo "<div>{$device['name']} (Quantity: {$device['quantity']})</div>";
             echo "<div class='actions'>";
-            echo "<a href='purchase_devices.php?id={$device['name']}'>Buy</a> | ";
-            echo "<a href='deviceDetails.php?id={$device['name']}'>View Details</a> | ";
-            echo "<a href='edit_device.php?id={$device['name']}'>Edit</a> | ";
-            echo "<a href='delete_device.php?id={$device['name']}'>Delete</a>";
+            echo "<a href='purchase_devices.php?id={$device['id']}'>Buy</a> | ";
+            echo "<a href='deviceDetails.php?id={$device['id']}'>View Details</a> | ";
+            echo "<a href='editDevice.php?id={$device['id']}'>Edit</a> | ";
+            echo "<a href='delete_device.php?id={$device['id']}'>Delete</a>";
             echo "</div>";
             echo "</li>";
         }
@@ -40,7 +47,7 @@ function displayDevices($devices)
         <h1>View Devices</h1>
         <?php 
         // Pass $_SESSION['devices'] to the displayDevices() function
-        displayDevices($_SESSION['devices'] ?? null); 
+        displayDevices($devices); 
         ?>
         <ul class="sub-menu">
             <div class="selection"><a href="#">Buy Devices</a></div>
