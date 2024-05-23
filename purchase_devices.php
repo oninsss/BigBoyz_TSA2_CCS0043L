@@ -1,30 +1,28 @@
 <?php
 session_start();
 
-// Dummy data for demonstration purposes
-$devices = [
-    ['id' => 1, 'device_name' => 'Phone', 'price' => 500, 'quantity' => 10],
-    ['id' => 2, 'device_name' => 'Laptop', 'price' => 1000, 'quantity' => 5],
-    ['id' => 3, 'device_name' => 'Tablet', 'price' => 300, 'quantity' => 8]
-];
+// Retrieve devices from session or use an empty array if not set
+$devices = isset($_SESSION['devices']) ? $_SESSION['devices'] : [];
 
 if (!empty($devices)) {
     if (!isset($_POST['submit']) || empty($_POST['quantity'])) { // Display purchase form if form not submitted or quantity array is empty
-        echo "<form action='' method='POST'>";
-        echo "<label for='device'>Choose a device:</label>";
-        echo "<select name='device' id='device'>";
-        echo "<option value='' selected disabled>Select Device</option>";
+        echo "<h2>Choose a Device to Buy</h2>";
+        echo "<ul>";
         foreach ($devices as $device) {
-            echo "<option value='{$device['id']}'>{$device['device_name']}</option>";
+            echo "<li>";
+            echo "<form action='' method='POST'>";
+            echo "<input type='hidden' name='device_id' value='{$device['id']}'>";
+            echo "<p>{$device['device_name']} - {$device['price']} USD (Quantity: {$device['quantity']})</p>";
+            echo "<label for='quantity'>Quantity to Buy:</label>";
+            echo "<input type='number' name='quantity' id='quantity' min='1' max='{$device['quantity']}' required>";
+            echo "<button type='submit' name='submit'>Buy</button>";
+            echo "</form>";
+            echo "</li>";
         }
-        echo "</select>";
-        echo "<label for='quantity'>Quantity to Buy:</label>";
-        echo "<input type='number' name='quantity' id='quantity' min='1' required>";
-        echo "<button type='submit' name='submit'>Submit</button>";
-        echo "</form>";
+        echo "</ul>";
         echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
     } elseif (isset($_POST['submit'])) { // Display confirmation message after purchase
-        $deviceId = $_POST['device'];
+        $deviceId = $_POST['device_id'];
         $quantity = $_POST['quantity'];
         
         // Find the selected device
