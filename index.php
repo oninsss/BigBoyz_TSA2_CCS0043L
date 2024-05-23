@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Welcome to HJT Electronic Devices Store</h1>
-    <a href="add_device.php">Add Device</a><br>
+    <a href="addDevice.php">Add Device</a><br>
     <a href="view_devices.php">View Devices</a><br>
     <a href="purchase_devices.php">Purchase Devices</a><br>
     <a href="view_purchase_history.php">View Purchase History</a><br>
