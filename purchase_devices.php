@@ -26,7 +26,7 @@ if (!empty($devices)) {
         }
 
         echo "</table>";
-        echo "<button type='submit' name='submit'>Calculate Total</button>";
+        echo "<button type='submit' name='submit'>Submit</button>";
         echo "</form>";
         echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
     } elseif (isset($_POST['submit'])) { // Display confirmation message after purchase
@@ -34,33 +34,9 @@ if (!empty($devices)) {
             $_SESSION['quantity'][$id] = $quantity;
         }
 
-        echo "<form action='' method='POST'>";
-        echo "<table>";
-        echo "<tr><th>Device Name</th><th>Price</th><th>Quantity to Buy</th><th>Total</th></tr>";
-
-        $total = 0;
-        foreach ($devices as $device) {
-            $quantity = $_SESSION['quantity'][$device['id']];
-            if ($quantity > 0 && $quantity <= $device['quantity']) {
-                $subtotal = $device['price'] * $quantity;
-                $total += $subtotal;
-                echo "<tr>";
-                echo "<td>{$device['device_name']}</td>";
-                echo "<td>{$device['price']}</td>";
-                echo "<td>{$quantity}</td>";
-                echo "<td>{$subtotal}</td>";
-                echo "</tr>";
-            }
-        }
-        echo "</table>";
-        echo "<p>Total: {$total}</p>";
-        echo "<button type='submit' name='confirm'>Confirm Purchase</button>";
-        echo "</form>";
-        echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
-        echo "<br>";
-    } elseif (isset($_POST['confirm'])) { // Display confirmation message after purchase
         echo "<p>Thank you for your purchase!</p>";
         echo "<button onclick='window.location.href=\"index.php\";'>Back to Main Menu</button>"; // Button to go back to the main menu
+        echo "<button onclick='window.location.href=\"purchase_devices.php\";'>Back to purchase devices</button>"; // Button to go back to the main menu
         session_unset(); // Clear session data after purchase confirmation
     }
 } else {
