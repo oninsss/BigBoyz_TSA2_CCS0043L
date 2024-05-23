@@ -14,17 +14,22 @@ $devices[] += $new_device;
 function displayDevices($devices)
 {
     echo "<h2>Available Devices</h2>";
-    echo "<ul>";
+    echo "<ul class='devices'>";
     foreach ($devices as $device) {
-        echo "<li>{$device['name']} (Quantity: {$device['quantity']})";
-        echo "<a href='buy_device.php?id={$device['id']}'>Buy</a> | ";
+        echo "<li>";
+        echo "<div>{$device['name']} (Quantity: {$device['quantity']})</div>";
+        echo "<div class='actions'>";
+        echo "<a href='purchase_devices.php?id={$device['id']}'>Buy</a> | ";
         echo "<a href='view_single_device.php?id={$device['id']}'>View Details</a> | ";
         echo "<a href='edit_device.php?id={$device['id']}'>Edit</a> | ";
-        echo "<a href='delete_device.php?id={$device['id']}'>Delete</a></li>";
+        echo "<a href='delete_device.php?id={$device['id']}'>Delete</a>";
+        echo "</div>";
+        echo "</li>";
     }
     echo "</ul>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +52,7 @@ function displayDevices($devices)
             background-color: #ffffff;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         h1 {
@@ -57,52 +63,69 @@ function displayDevices($devices)
             color: #555555;
         }
 
-        ul {
+        ul.devices {
             list-style-type: none;
             padding: 0;
         }
 
-        li {
-            margin-bottom: 10px;
+        .sub-menu {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+
+            .selection {
+                border: 1px solid red;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: red;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
         }
 
-        a {
+        ul.devices li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style-type: none;
+        }
+
+        ul.devices li .actions {
+            display: flex;
+        }
+
+        ul.devices li .actions a {
+            margin-right: 10px;
             text-decoration: none;
             color: #007bff;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .sub-menu {
-            padding-left: 20px;
-        }
-
-        .sub-menu li {
-            margin-bottom: 5px;
-        }
-
-        .sub-menu a {
-            color: #555555;
-        }
-
-        .sub-menu a:hover {
+        ul.devices li .actions a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>View Devices</h1>
+    <h1>View Devices</h1>
         <?php displayDevices($devices); ?>
         <ul class="sub-menu">
-            <li><a href="#">Buy Devices</a></li>
-            <li><a href="#">View Single Device</a></li>
-            <li><a href="#">Edit Device</a></li>
-            <li><a href="#">Delete Device</a></li>
-            <li><a href="#">Clear All Devices</a></li>
-            <li><a href="#">Clear All Purchases</a></li>
+            <div class="selection"><a href="#">Buy Devices</a></div>
+            <div class="selection"><a href="#">View Single Device</a></div>
+            <div class="selection"><a href="#">Edit Device</a></div>
+            <div class="selection"><a href="#">Delete Device</a></div>
+            <div class="selection"><a href="#">Clear All Devices</a></div>
+            <div class="selection"><a href="#">Clear All Purchases</a></div>
         </ul>
     </div>
 </body>

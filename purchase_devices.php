@@ -15,11 +15,14 @@
         ['id' => 2, 'device_name' => 'Laptop', 'price' => 1000, 'quantity' => 5],
         ['id' => 3, 'device_name' => 'Tablet', 'price' => 300, 'quantity' => 8]
     ];
-    //goes back to a dummy .php process_purchase.php
+
     if (!empty($devices)) {
         echo "<form action='process_purchase.php' method='POST'>";
         echo "<table>";
         echo "<tr><th>Device Name</th><th>Price</th><th>Available Quantity</th><th>Quantity to Buy</th></tr>";
+
+
+        // Using a foreach loop
         foreach ($devices as $device) {
             echo "<tr>";
             echo "<td>{$device['device_name']}</td>";
@@ -28,6 +31,7 @@
             echo "<td><input type='number' name='quantity[{$device['id']}]' min='1' max='{$device['quantity']}' required></td>";
             echo "</tr>";
         }
+
         echo "</table>";
         echo "<button type='submit'>Confirm Purchase</button>";
         echo "</form>";
