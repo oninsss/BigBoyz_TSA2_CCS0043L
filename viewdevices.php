@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-// Sample devices data (can be fetched from the database)
-$devices = [
-    ['id' => 1, 'name' => 'Laptop', 'quantity' => 10, 'price' => 1000],
-    ['id' => 2, 'name' => 'Smartphone', 'quantity' => 20, 'price' => 800],
-    ['id' => 3, 'name' => 'Tablet', 'quantity' => 15, 'price' => 500]
+$new_device = [
+    'name' => $_POST['name'],
+    'quantity' => $_POST['quantity'],
+    'price' => $_POST['price']
 ];
+
+// Sample devices data (can be fetched from the database)
+$devices[] += $new_device;
 
 // Function to display devices
 function displayDevices($devices)
