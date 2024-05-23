@@ -12,7 +12,7 @@ if (!empty($devices)) {
     if (!isset($_POST['submit']) || empty($_POST['quantity'])) { // Display purchase form if form not submitted or quantity array is empty
         echo "<form action='' method='POST'>";
         echo "<table>";
-        echo "<tr><th>Device Name</th><th>Price</th><th>Initial Quantity</th><th>Quantity to Buy</th><th>Total</th></tr>";
+        echo "<tr><th>Device Name</th><th>Price</th><th>Initial Quantity</th><th>Quantity to Buy</th></tr>";
 
         foreach ($devices as $device) {
             $initialQuantity = isset($_SESSION['quantity'][$device['id']]) ? $_SESSION['quantity'][$device['id']] : 1;
@@ -21,7 +21,6 @@ if (!empty($devices)) {
             echo "<td>{$device['price']}</td>";
             echo "<td>{$device['quantity']}</td>";
             echo "<td><input type='number' name='quantity[{$device['id']}]' min='1' max='{$device['quantity']}' value='$initialQuantity' required></td>";
-            echo "<td>{$device['price']}</td>"; // Placeholder for total
             echo "</tr>";
         }
 
