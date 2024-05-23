@@ -5,9 +5,9 @@ session_start();
 $devices = isset($_SESSION['devices']) ? $_SESSION['devices'] : [];
 
 // Function to retrieve device details by ID
-function getDeviceById($devices, $id) {
+function POSTDeviceById($devices, $name) {
     foreach ($devices as $device) {
-        if ($device['id'] == $id) {
+        if ($device['name'] == $name) {
             return $device;
         }
     }
@@ -15,9 +15,9 @@ function getDeviceById($devices, $id) {
 }
 
 // Check if device ID is provided in the URL
-if (isset($_GET['id'])) {
-    $deviceId = $_GET['id'];
-    $selectedDevice = getDeviceById($devices, $deviceId);
+if (isset($_POST['name'])) {
+    $deviceId = $_POST['name'];
+    $selectedDevice = POSTDeviceById($devices, $deviceId);
 
     if ($selectedDevice) {
         $name = $selectedDevice['name'];
