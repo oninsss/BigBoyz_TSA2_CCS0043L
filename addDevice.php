@@ -4,13 +4,13 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_device"])) {
     // Validate and sanitize input
     $name = isset($_POST["name"]) ? $_POST["name"] : '';
-    $description = isset($_POST["description"]) ? $_POST["description"] : '';
+    $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : '';
     $price = isset($_POST["price"]) ? $_POST["price"] : '';
 
     // Check if all required fields are filled
     if (empty($name) || empty($price)) {
         $_SESSION['message'] = "Name and price are required fields.";
-        header("Location: add_device.php");
+        header("Location: addDevice.php"); // Corrected the filename here
         exit();
     }
 
@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_device"])) {
         $_SESSION['devices'] = array();
     }
 
-    // Add device to the session array
-    $_SESSION['devices'][] = array('name' => $name, 'description' => $description, 'price' => $price);
+    // Add device to the session array using the quantity provided
+    $_SESSION['devices'][] = array('name' => $name, 'quantity' => $quantity, 'price' => $price);
 
     $_SESSION['message'] = "Device added successfully";
     header("Location: index.php");
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_device"])) {
     ?>
     <form action="addDevice.php" method="post">
         Name: <input type="text" name="name"><br>
-        Description: <textarea name="description"></textarea><br>
+        Quantity: <input type="number" name="quantity"><br>
         Price: <input type="number" name="price"><br>
         <input type="submit" name="add_device" value="Add Device">
     </form>
