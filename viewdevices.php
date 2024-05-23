@@ -22,32 +22,86 @@ function displayDevices($devices)
     }
     echo "</ul>";
 }
-
-// View Devices Page
-echo "<h1>View Devices</h1>";
-displayDevices($devices);
-
-// Buy Devices Page
-echo "<h1>Buy Devices</h1>";
-echo "<a href='index.php'>Back to Home</a>";
-
-// View Single Device Page
-echo "<h1>View Single Device</h1>";
-echo "<a href='index.php'>Back to Home</a>";
-
-// Edit Device Page
-echo "<h1>Edit Device</h1>";
-echo "<a href='index.php'>Back to Home</a>";
-
-// Delete Device Page
-echo "<h1>Delete Device</h1>";
-echo "<a href='index.php'>Back to Home</a>";
-
-// Clear All Devices Page
-echo "<h1>Clear All Devices</h1>";
-echo "<a href='index.php'>Back to Home</a>";
-
-// Clear All Purchases Page
-echo "<h1>Clear All Purchases</h1>";
-echo "<a href='index.php'>Back to Home</a>";
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Devices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        h2 {
+            color: #555555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .sub-menu {
+            padding-left: 20px;
+        }
+
+        .sub-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sub-menu a {
+            color: #555555;
+        }
+
+        .sub-menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>View Devices</h1>
+        <?php displayDevices($devices); ?>
+        <ul class="sub-menu">
+            <li><a href="#">Buy Devices</a></li>
+            <li><a href="#">View Single Device</a></li>
+            <li><a href="#">Edit Device</a></li>
+            <li><a href="#">Delete Device</a></li>
+            <li><a href="#">Clear All Devices</a></li>
+            <li><a href="#">Clear All Purchases</a></li>
+        </ul>
+    </div>
+</body>
+</html>
