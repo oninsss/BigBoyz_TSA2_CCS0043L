@@ -19,7 +19,7 @@
         img {
             width: 40%;
             margin-bottom: -60px;
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 1));
         }
         h1 {
             font-size: 4rem;

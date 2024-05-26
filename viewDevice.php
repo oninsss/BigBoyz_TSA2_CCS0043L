@@ -1,12 +1,68 @@
 <?php
 session_start();
 
-// Function to display devices
 function displayDevices($devices)
 {
+    $devices = array(
+        array(
+            'id' => 1,
+            'name' => 'iPhone 15 Pro Max',
+            'quantity' => 10,
+            'price' => 1599.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+        array(
+            'id' => 2,
+            'name' => 'Samsung Galaxy S30',
+            'quantity' => 8,
+            'price' => 1499.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+        array(
+            'id' => 3,
+            'name' => 'Google Pixel 7 Pro',
+            'quantity' => 5,
+            'price' => 1399.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+
+        array(
+            'id' => 4,
+            'name' => 'Xiaomi Mi 12',
+            'quantity' => 15,
+            'price' => 1099.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+        array(
+            'id' => 5,
+            'name' => 'OnePlus 10 Pro',
+            'quantity' => 20,
+            'price' => 1299.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+        array(
+            'id' => 6,
+            'name' => 'Sony Xperia 2',
+            'quantity' => 12,
+            'price' => 1399.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        ),
+        array(
+            'id' => 7,
+            'name' => 'Huawei P50 Pro',
+            'quantity' => 10,
+            'price' => 1499.99,
+            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
+        )
+    );
+    
     // Check if $devices is set and not empty
     if (isset($devices) && is_array($devices) && !empty($devices)) {
-        echo "<div class='cardWrapper'>";
+        echo "<div class='sortBx'>";
+            echo "<button id='_back' onclick='#'>Sort</button>";    
+        echo "</div>";
+        echo "<div class='cardWrapper'>";  
+
         foreach ($devices as $device) {
             echo "<div class='card'>";
                 echo "<img src='{$device['image']}' alt='{$device['name']}'>";
@@ -16,13 +72,13 @@ function displayDevices($devices)
                 echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
                 // Update the onclick attribute to navigate to deviceDetails.php with the device ID
                 echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
-
                 echo "<div class='editDel'>";
                     echo "<button id='_edit' onclick='edit({$device['id']})'>Edit</button>";
                     echo "<button id='_del' onclick='del({$device['id']})'>Delete</button>";
                 echo "</div>";
             echo "</div>";
         }
+
         echo "</div>";
     } else {
         echo "
@@ -42,32 +98,41 @@ function displayDevices($devices)
     <title>Devices</title>
     <link rel="stylesheet" href="Assets/Styles/style.css">
     <style>
-    .sortBx {
-        z-index: -1;
-        background-color: red;
-        width: 100%;
-        height: 2vh;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        padding: 20px;
+    body {
+        justify-content: start;
     }
-
-    .container {
+    .sortBx {
+        position: fixed;
+        top: 8%;
+        z-index: 1;
         width: 100%;
-        background-color: red;
+        padding-bottom: 1rem;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: start;
+        align-items: end;
+        gap: 20px;
+        backdrop-filter: blur(4px);
+
+        button {
+            margin: 0 16rem ;
+            padding: 0.5rem 1.2rem;
+            background-color: transparent;
+            color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.5s;
+        }
     }
 
     .cardWrapper {
-        max-width: 80%;
+        height: auto;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        flex-wrap: wrap;
         gap: 20px;
-        padding: 20px;
+        max-width: 80%;
+        margin-top: 12%;
     }
 
     .card {
@@ -148,6 +213,10 @@ function displayDevices($devices)
     }
 
     .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -70%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -180,22 +249,20 @@ function displayDevices($devices)
 </style>
 </head>
 <body>
-<div class="navBx">
-    <div class="logo">
-        <h1 onclick="home()">HJT</h1>
+    <div class="navBx">
+        <div class="logo">
+            <h1 onclick="home()">HJT</h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="menu">
-        <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign Up</a></li>
-        </ul>
-    </div>
-</div>   
-<div class="container">
     <?php
-    displayDevices(isset($_SESSION['devices']) ? $_SESSION['devices'] : []);
+        displayDevices(isset($_SESSION['devices']) ? $_SESSION['devices'] : []);
     ?>
-</div>
 <script src="Assets/Script/script.js"></script>
 </body>
 </html>
