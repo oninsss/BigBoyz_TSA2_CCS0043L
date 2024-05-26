@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$devices = $_SESSION['devices'] ?? [];
+
 // Function to display devices
 function displayDevices($devices)
 {
@@ -13,13 +15,22 @@ function displayDevices($devices)
                 echo "<h2>{$device['name']}</h2>";
                 echo "<p>Quantity: {$device['quantity']}</p>";
                 echo "<p>Price: \${$device['price']}</p>";
-                echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
+                // echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
+                echo "<button id='_purchase' onclick='\$deviceToEdit = \$device[\"id\"]'>Purchase</button>";
                 // Update the onclick attribute to navigate to deviceDetails.php with the device ID
                 echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
 
                 echo "<div class='editDel'>";
-                    echo "<button id='_edit' onclick='edit({$device['id']})'>Edit</button>";
-                    echo "<button id='_del' onclick='del({$device['id']})'>Delete</button>";
+                    echo "<form action='editDevice.php' method='POST'>";
+                    echo "<input type='hidden' name='id' value='{$device['id']}'>";
+                    echo "<input type='submit' name='edit' value='Edit'>"; // Changed button text to "Edit"
+                    echo "</form>";
+                    echo "<form action='deleteDevice.php' method='POST'>"; // Changed form action to "deleteDevice.php"
+                    echo "<input type='hidden' name='id' value='{$device['id']}'>";
+                    echo "<input type='submit' name='delete' value='Delete'>"; // Changed button text to "Delete"
+                    echo "</form>";
+                    // echo "<button id='_edit' onclick='edit({$device['id']})'>Edit</button>";
+                    // echo "<button id='_del' onclick='del({$device['id']})'>Delete</button>";
                 echo "</div>";
             echo "</div>";
         }
