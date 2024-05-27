@@ -15,7 +15,10 @@ function displayDevices() {
                 echo "<h2>{$device['name']}</h2>";
                 echo "<p>Quantity: {$device['quantity']}</p>";
                 echo "<p>Price: \${$device['price']}</p>";
-                echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
+                echo "<form action='purchDevice.php' method='GET'>";
+                echo "<input type='hidden' name='id' value='{$device['id']}'>";
+                echo "<button id='_purchase' type='submit'>Purchase</button>";
+                echo "</form>";
                 echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
 
                 echo "<div class='editDel'>";
@@ -48,6 +51,14 @@ function confirmDelete() {
     return confirm('Are you sure you want to delete this device?');
 }
 </script>
+
+
+<script>
+function confirmDelete() {
+    return confirm('Are you sure you want to delete this device?');
+}
+</script>
+
 
 <!DOCTYPE html>
 <html lang="en">
