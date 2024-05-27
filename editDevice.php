@@ -1,14 +1,11 @@
 <?php
 session_start();
 
-// Sample devices data (can be fetched from the database)
 $devices = $_SESSION['devices'] ?? [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the 'id' exists in the POST data
     if (isset($_POST['edit']) && isset($_POST['id'])) {
         $deviceToEdit = $_POST['id'];
-        // Proceed with your logic, for example, fetching device details from the database using $id
     } else {
         echo "No ID was provided!";
     }
@@ -26,59 +23,125 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>View Devices</title>
     <link rel="stylesheet" href="./Assets/Styles/style.css">
     <style>
-        .container.card{
+
+        .card {
+            background-color: #fff;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            border-radius: 10px;
+        }
+        .left, .right {
             display: flex;
             flex-direction: column;
+            gap: 1rem;
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+        .left {
+            button {
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #333;
+                color: #fff;
+                cursor: pointer;
+                transition: 0.5s;
+
+                &:hover {
+                    filter: brightness(1.5);
+                }   
+            }
+        }
+        .right {
+            form {
+                display: flex;
+                flex-direction: column;
+
+                input[type="text"], input[type="number"] {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    font-size: 1.2rem;
+                }
+
+                input[type="submit"] {
+                    background-color: #38B000;
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 15px;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    transition: 0.5s;
+                }
+
+                input[type="submit"]:hover {
+                    filter: brightness(1.2);
+                }
+            }
         }
     </style>
 </head>
 <body>
-    <div class="navBx">
+<div class="navBx">
+    <nav>
         <div class="logo">
             <h1 onclick="home()">HJT</h1>
         </div>
         <div class="menu">
-            <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
+            <button onclick="openPurchHistory()">Purchase History</button>
         </div>
-    </div>
+    </nav>  
+</div>
     <div class="container" >
         <?php
             foreach ($devices as $device) {
                 if ($device['id'] == $deviceToEdit) {
-                    // Display the device information in a form for editing
-                    echo "<div class='card' style='display: flex; flex-direction: row; justify-content: space-between; gap: 50px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); padding: 50px; border-radius: 5px;'> ";
+                    echo "<div class='card'>";
                     
-                    echo "<div class='cardOne' style='padding-50px;'>";
+                    echo "<div class='left'>";
                     echo "<h1>Device Details</h1>";
                     echo "<p>ID: {$device['id']}</p>";
                     echo "<p>Name: {$device['name']}</p>";
                     echo "<p>Quantity: {$device['quantity']}</p>";
                     echo "<p>Price: \${$device['price']}</p>";
                     echo "<p>Image: <img src='{$device['image']}' alt='{$device['name']}'></p>";
+                    echo "<button onclick='openViewDevice()'>Back to Devices</button>";
                     echo "</div>";
 
-                    echo "<div class='cardTwo'>";
+                    echo "<div class='right'>";
                     echo "<h1>Edit Device</h1>";
-                    echo "<form action='edit_device_action.php' method='POST' style='display: flex; flex-direction: column; '>";
+                    echo "<form action='edit_device_action.php' method='POST'>";
                     echo "<input type='hidden' name='id' value='{$device['id']}'>";
-                    echo "Name: <input type='text' name='name' style='border: 1px solid #000; border-radius: 4px; height:30px;' ><br>";
-                    echo "Quantity: <input type='number' name='quantity' style='border: 1px solid #000; border-radius: 4px; height:30px;' ><br>";
-                    echo "Price: <input type='number' name='price' style='border: 1px solid #000; border-radius: 4px; height:30px;'><br>";
-                    echo "<input type='submit' name='update' value='Update' style='border: none; border-radius: 4px; height:30px; background-color: green; color: white;'>"; // Changed button text to "Update"
+                    echo "Name: <input type='text' name='name'><br>";
+                    echo "Quantity: <input type='number' name='quantity'><br>";
+                    echo "Price: <input type='number' name='price'><br>";
+                    echo "<input type='submit' name='update' value='Update'>";
                     echo "</form>";
                     echo "</div>";
                     
-                    echo "</div>"; // Close the .card div
+                    echo "</div>"; 
                     break;
                 }
             }
         ?>
-    <!-- <button onclick="location.href='viewDevices.php'">Back to Devices</button> -->
+    
     </div>
 
-
+    <script src="Assets/Script/script.js"></script>
 </body>
 </html>

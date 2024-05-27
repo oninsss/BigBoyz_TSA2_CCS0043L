@@ -19,68 +19,49 @@ body {
 }
 
 .navBx {
-    position: fixed;
+    position: fixed;    
     top: 0;
     width: 100%;
     height: 5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #F5F5F5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 999;
-    
-    .logo {
-        margin-left: 16rem;
-        h1 {
-            font-size: 2rem;
-            font-weight: 1600;
-            color: #FB8500;
-            cursor: pointer;
-        }
-    }
 
-    .menu {
-        margin-right: 16rem;
-        ul {
-            display: flex;
-            list-style: none;
-            justify-content: space-between;
-            li {
-                margin-left: 4rem;
-                a {
-                    text-decoration: none;
-                    color: #333;
-                    font-size: 1.2rem;
-                    font-weight: 400;
+    nav {
+        position: relative;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #F5F5F5;
+        z-index: 999;
+
+        .logo {
+            cursor: pointer;
+            h1 {
+                font-size: 2rem;
+                font-weight: 1600;
+                color: #FB8500;
+                cursor: pointer;
+            }
+        }
+        .menu {
+            button {
+                padding: 0.5rem 1.2rem;
+                background-color: transparent;
+                color: #333;
+                border: 1px solid #333;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #333;
+                    color: #EFEFEF;
                 }
             }
         }
     }
-
-}
-
-.container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    background-color: red;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 5rem;
-    padding: 0 2rem;
-
-    
-    
-}
-
-.card{
-    display: flex;
-    flex-direction: row;
-}
-
-.cardOne{
-    display: flex;
-    background-color: red;
 }

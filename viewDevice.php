@@ -5,29 +5,28 @@ function displayDevices() {
     $devices = $_SESSION['devices'] ?? [];
 
     if (isset($devices) && is_array($devices) && !empty($devices)) {
-        echo "<div class='sortBx'>";
-        echo "<button id='_back' onclick='#'>Sort</button>";
-        echo "</div>";
         echo "<div class='cardWrapper'>";
 
         foreach ($devices as $device) {
             echo "<div class='card'>";
-            echo "<img src='{$device['image']}' alt='{$device['name']}'>";
-            echo "<h2>{$device['name']}</h2>";
-            echo "<p>Quantity: {$device['quantity']}</p>";
-            echo "<p>Price: \${$device['price']}</p>";
-            echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
-            echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
-            echo "<div class='editDel'>";
-            echo "<form action='editDevice.php' method='POST'>";
-            echo "<input type='hidden' name='id' value='{$device['id']}'>";
-            echo "<input id='_edit' type='submit' name='edit' value='Edit'>";
-            echo "</form>";
-            echo "<form action='deleteDevice.php' method='POST' onsubmit='return confirmDelete();'>";
-            echo "<input type='hidden' name='id' value='{$device['id']}'>";
-            echo "<input id='_del' type='submit' name='delete' value='Delete'>";
-            echo "</form>";
-            echo "</div>";
+                echo "<img src='{$device['image']}' alt='{$device['name']}'>";
+                echo "<h2>{$device['name']}</h2>";
+                echo "<p>Quantity: {$device['quantity']}</p>";
+                echo "<p>Price: \${$device['price']}</p>";
+                echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
+                echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
+
+                echo "<div class='editDel'>";
+                    echo "<form action='editDevice.php' method='POST'>";
+                        echo "<input type='hidden' name='id' value='{$device['id']}'>";
+                        echo "<input id='_edit' type='submit' name='edit' value='Edit'>";
+                    echo "</form>";
+                    echo "<form action='deleteDevice.php' method='POST' onsubmit='return confirmDelete();'>";
+                        echo "<input type='hidden' name='id' value='{$device['id']}'>";
+                        echo "<input id='_del' type='submit' name='delete' value='Delete'>";
+                    echo "</form>";
+                echo "</div>";
+
             echo "</div>";
         }
 
@@ -61,41 +60,19 @@ function confirmDelete() {
     body {
         justify-content: start;
     }
-    .sortBx {
-        position: fixed;
-        top: 8%;
-        z-index: 1;
-        width: 100%;
-        padding-bottom: 1rem;
-        display: flex;
-        justify-content: start;
-        align-items: end;
-        gap: 20px;
-        backdrop-filter: blur(4px);
-
-        button {
-            margin: 0 16rem ;
-            padding: 0.5rem 1.2rem;
-            background-color: transparent;
-            color: #333;
-            border: 1px solid #333;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: 0.5s;
-        }
-    }
 
     .cardWrapper {
         height: auto;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
+        gap: 40px;
         max-width: 80%;
-        margin-top: 12%;
+        margin-top: 200px;
     }
 
     .card {
+        display: flex;
+        flex-direction: column;
         height: fit-content;
         background-color: #fff;
         padding: 20px;
@@ -146,45 +123,31 @@ function confirmDelete() {
     }
 
     .card .editDel {
+        margin: 0.5rem 0;
         display: flex;
-        justify-content: start;
-        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .card #_edit, .card #_del {
+        width: 7.8rem;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        transition: 0.3s ease-in-out ;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(1.2);
+        }
     }
 
     .card #_edit {
-        /* border: 2px solid #FB8500; */
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        
         background-color: #FB8500;
-        color: white;
-        transition: 0.3s ease-in-out ;
-
-        &:hover {
-            background-color: transparent;
-            transform: scale(1.1);
-            cursor: pointer;
-            color: #FB8500;
-        }
     }
 
     .card #_del {
-        /* border: 2px solid #c1121f; */
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        background-color: transparent;
         background-color: #c1121f;
-        color: white;
-        transition: 0.3s ease-in-out;
-
-        &:hover {
-            background-color: transparent;
-            transform: scale(1.1);
-            cursor: pointer;
-            color: #c1121f;
-        }
     }
 
     .popup {
@@ -224,20 +187,21 @@ function confirmDelete() {
 </style>
 </head>
 <body>
-    <div class="navBx">
+<div class="navBx">
+    <nav>
         <div class="logo">
             <h1 onclick="home()">HJT</h1>
         </div>
         <div class="menu">
-            <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
+            <button onclick="openPurchHistory()">Purchase History</button>
         </div>
-    </div>
+    </nav>  
+</div>
+
     <?php
         displayDevices();
     ?>
+
 <script src="Assets/Script/script.js"></script>
 </body>
 </html>

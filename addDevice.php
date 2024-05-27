@@ -2,19 +2,16 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
-    // Validate and sanitize input
     $name = isset($_POST["deviceName"]) ? htmlspecialchars($_POST["deviceName"]) : '';
     $quantity = isset($_POST["deviceStock"]) ? htmlspecialchars($_POST["deviceStock"]) : '';
     $price = isset($_POST["devicePrice"]) ? htmlspecialchars($_POST["devicePrice"]) : '';
 
-    // Check if all required fields are filled
     if (empty($name) || empty($price)) {
         $_SESSION['message'] = "Name and price are required fields.";
         header("Location: addDevice.php");
         exit();
     }
 
-    // Handle file upload
     if (isset($_FILES['deviceImage']) && $_FILES['deviceImage']['error'] == 0) {
         $targetDir = "uploads/";
         $targetFile = $targetDir . basename($_FILES["deviceImage"]["name"]);
@@ -29,15 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
         $deviceImage = '';
     }
 
-    // Generate a unique identifier for the device
     $deviceId = uniqid();
 
-    // Assuming devices are stored in an array in session
     if (!isset($_SESSION['devices'])) {
         $_SESSION['devices'] = array();
     }
 
-    // Add device to the session array using the unique identifier
     $_SESSION['devices'][$deviceId] = array(
         'id' => $deviceId,
         'name' => $name,
@@ -46,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
         'image' => $deviceImage
     );
 
-    $_SESSION['message'] = "Device added successfully";
-    header("Location: viewDevice.php");
+    $_SESSION['message'] = "Device added successfully.";
+    header("Location: addDevice.php");
     exit();
 }
 ?>
@@ -124,15 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
 </head>
 <body>
 <div class="navBx">
-    <div class="logo">
-        <h1 onclick="home()">HJT</h1>
-    </div>
-    <div class="menu">
-        <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign Up</a></li>
-        </ul>
-    </div>
+    <nav>
+        <div class="logo">
+            <h1 onclick="home()">HJT</h1>
+        </div>
+        <div class="menu">
+            <button onclick="openPurchHistory()">Purchase History</button>
+        </div>
+    </nav>  
 </div>
 
 <div class="formBx">

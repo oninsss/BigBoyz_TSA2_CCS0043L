@@ -65,15 +65,14 @@
 </head>
 <body>
 <div class="navBx">
-    <div class="logo">
-        <h1 onclick="home()">HJT</h1>
-    </div>
-    <div class="menu">
-        <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign Up</a></li>
-        </ul>
-    </div>
+    <nav>
+        <div class="logo">
+            <h1 onclick="home()">HJT</h1>
+        </div>
+        <div class="menu">
+            <button onclick="openPurchHistory()">Purchase History</button>
+        </div>
+    </nav>  
 </div>
 <div class="header">
     <div class="textBx">

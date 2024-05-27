@@ -7,5 +7,7 @@ function openAddDevice() {
 function openViewDevice() {
     window.location.href = "viewDevice.php";
 }
-
+function openPurchHistory() {
+    window.location.href = "purchaseHistory.php";
+}
 
