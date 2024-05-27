@@ -1,92 +1,33 @@
 <?php
 session_start();
 
-$devices = $_SESSION['devices'] ?? [];
+function displayDevices() {
+    $devices = $_SESSION['devices'] ?? [];
 
-function displayDevices($devices)
-{
-    $devices = array(
-        array(
-            'id' => 1,
-            'name' => 'iPhone 15 Pro Max',
-            'quantity' => 10,
-            'price' => 1599.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-        array(
-            'id' => 2,
-            'name' => 'Samsung Galaxy S30',
-            'quantity' => 8,
-            'price' => 1499.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-        array(
-            'id' => 3,
-            'name' => 'Google Pixel 7 Pro',
-            'quantity' => 5,
-            'price' => 1399.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-
-        array(
-            'id' => 4,
-            'name' => 'Xiaomi Mi 12',
-            'quantity' => 15,
-            'price' => 1099.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-        array(
-            'id' => 5,
-            'name' => 'OnePlus 10 Pro',
-            'quantity' => 20,
-            'price' => 1299.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-        array(
-            'id' => 6,
-            'name' => 'Sony Xperia 2',
-            'quantity' => 12,
-            'price' => 1399.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        ),
-        array(
-            'id' => 7,
-            'name' => 'Huawei P50 Pro',
-            'quantity' => 10,
-            'price' => 1499.99,
-            'image' => 'https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-US_3295c924-7c21-417d-870c-32bee7f1e310.jpg?v=1695861436'
-        )
-    );
-    
-    // Check if $devices is set and not empty
     if (isset($devices) && is_array($devices) && !empty($devices)) {
         echo "<div class='sortBx'>";
-            echo "<button id='_back' onclick='#'>Sort</button>";    
+        echo "<button id='_back' onclick='#'>Sort</button>";
         echo "</div>";
-        echo "<div class='cardWrapper'>";  
+        echo "<div class='cardWrapper'>";
 
         foreach ($devices as $device) {
             echo "<div class='card'>";
-                echo "<img src='{$device['image']}' alt='{$device['name']}'>";
-                echo "<h2>{$device['name']}</h2>";
-                echo "<p>Quantity: {$device['quantity']}</p>";
-                echo "<p>Price: \${$device['price']}</p>";
-                // echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
-                echo "<button id='_purchase' onclick='\$deviceToEdit = \$device[\"id\"]'>Purchase</button>";
-                // Update the onclick attribute to navigate to deviceDetails.php with the device ID
-                echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
-                echo "<div class='editDel'>";
-                    echo "<form action='editDevice.php' method='POST'>";
-                    echo "<input type='hidden' name='id' value='{$device['id']}'>";
-                    echo "<input type='submit' name='edit' value='Edit'>"; // Changed button text to "Edit"
-                    echo "</form>";
-                    echo "<form action='deleteDevice.php' method='POST'>"; // Changed form action to "deleteDevice.php"
-                    echo "<input type='hidden' name='id' value='{$device['id']}'>";
-                    echo "<input type='submit' name='delete' value='Delete'>"; // Changed button text to "Delete"
-                    echo "</form>";
-                    // echo "<button id='_edit' onclick='edit({$device['id']})'>Edit</button>";
-                    // echo "<button id='_del' onclick='del({$device['id']})'>Delete</button>";
-                echo "</div>";
+            echo "<img src='{$device['image']}' alt='{$device['name']}'>";
+            echo "<h2>{$device['name']}</h2>";
+            echo "<p>Quantity: {$device['quantity']}</p>";
+            echo "<p>Price: \${$device['price']}</p>";
+            echo "<button id='_purchase' onclick='purchase({$device['id']})'>Purchase</button>";
+            echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
+            echo "<div class='editDel'>";
+            echo "<form action='editDevice.php' method='POST'>";
+            echo "<input type='hidden' name='id' value='{$device['id']}'>";
+            echo "<input id='_edit' type='submit' name='edit' value='Edit'>";
+            echo "</form>";
+            echo "<form action='deleteDevice.php' method='POST' onsubmit='return confirmDelete();'>";
+            echo "<input type='hidden' name='id' value='{$device['id']}'>";
+            echo "<input id='_del' type='submit' name='delete' value='Delete'>";
+            echo "</form>";
+            echo "</div>";
             echo "</div>";
         }
 
@@ -100,6 +41,14 @@ function displayDevices($devices)
     }
 }
 ?>
+
+<script>
+function confirmDelete() {
+    return confirm('Are you sure you want to delete this device?');
+}
+</script>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,6 +96,7 @@ function displayDevices($devices)
     }
 
     .card {
+        height: fit-content;
         background-color: #fff;
         padding: 20px;
         border-radius: 10px;
@@ -197,29 +147,43 @@ function displayDevices($devices)
 
     .card .editDel {
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
         gap: 10px;
     }
 
     .card #_edit {
-        border: 2px solid #FB8500;
-        background-color: transparent;
-        color: #FB8500;
+        /* border: 2px solid #FB8500; */
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        
+        background-color: #FB8500;
+        color: white;
+        transition: 0.3s ease-in-out ;
 
         &:hover {
-            background-color: #FB8500;
-            color: #fff;
+            background-color: transparent;
+            transform: scale(1.1);
+            cursor: pointer;
+            color: #FB8500;
         }
     }
 
     .card #_del {
-        border: 2px solid #c1121f;
+        /* border: 2px solid #c1121f; */
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
         background-color: transparent;
-        color: #c1121f;
+        background-color: #c1121f;
+        color: white;
+        transition: 0.3s ease-in-out;
 
         &:hover {
-            background-color: #c1121f;
-            color: #fff;
+            background-color: transparent;
+            transform: scale(1.1);
+            cursor: pointer;
+            color: #c1121f;
         }
     }
 
@@ -272,7 +236,7 @@ function displayDevices($devices)
         </div>
     </div>
     <?php
-        displayDevices(isset($_SESSION['devices']) ? $_SESSION['devices'] : []);
+        displayDevices();
     ?>
 <script src="Assets/Script/script.js"></script>
 </body>
