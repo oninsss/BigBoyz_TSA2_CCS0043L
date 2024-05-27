@@ -48,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         .left {
+            img {
+                height: 100px;
+                border-radius: 5px;
+            }
             button {
                 padding: 10px;
                 border: none;
@@ -119,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<p>Name: {$device['name']}</p>";
                     echo "<p>Quantity: {$device['quantity']}</p>";
                     echo "<p>Price: \${$device['price']}</p>";
-                    echo "<p>Image: <img src='{$device['image']}' alt='{$device['name']}'></p>";
+                    echo "<p><img src='{$device['image']}' alt='{$device['name']}'></p>";
                     echo "<button onclick='openViewDevice()'>Back to Devices</button>";
                     echo "</div>";
 

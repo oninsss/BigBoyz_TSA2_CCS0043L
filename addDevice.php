@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$defaultImageURL = "https://i.ebayimg.com/images/g/ub0AAOSw1rdjSAhX/s-l1200.jpg";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
     $name = isset($_POST["deviceName"]) ? htmlspecialchars($_POST["deviceName"]) : '';
     $quantity = isset($_POST["deviceStock"]) ? htmlspecialchars($_POST["deviceStock"]) : '';
@@ -12,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
         exit();
     }
 
+    $deviceImage = $defaultImageURL;
+
     if (isset($_FILES['deviceImage']) && $_FILES['deviceImage']['error'] == 0) {
         $targetDir = "uploads/";
         $targetFile = $targetDir . basename($_FILES["deviceImage"]["name"]);
@@ -22,8 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
             header("Location: addDevice.php");
             exit();
         }
-    } else {
-        $deviceImage = '';
     }
 
     $deviceId = uniqid();
@@ -45,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
     exit();
 }
 ?>
+
 
 
 <!DOCTYPE html>

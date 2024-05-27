@@ -9,7 +9,9 @@ function displayDevices() {
 
         foreach ($devices as $device) {
             echo "<div class='card'>";
-                echo "<img src='{$device['image']}' alt='{$device['name']}'>";
+                echo "<div class='imgBx'>";   
+                    echo "<img src='{$device['image']}' alt='{$device['name']}'>";
+                echo "</div>";
                 echo "<h2>{$device['name']}</h2>";
                 echo "<p>Quantity: {$device['quantity']}</p>";
                 echo "<p>Price: \${$device['price']}</p>";
@@ -47,8 +49,6 @@ function confirmDelete() {
 }
 </script>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,16 +75,24 @@ function confirmDelete() {
         flex-direction: column;
         height: fit-content;
         background-color: #fff;
-        padding: 20px;
+        padding: 30px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         max-width: 300px;
         text-align: center;
     }
 
-    .card img {
+    .card .imgBx {
+        height: 300px;
         width: 100%;
-        border-radius: 5px;
+        overflow: hidden;
+        border-bottom: 1px solid #ccc;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .card h2 {
@@ -93,13 +101,13 @@ function confirmDelete() {
     }
 
     .card p {
-        font-size: 1.2rem;
-        margin: 10px 0;
+        font-size: 1.1rem;
+        margin: 8px 0;
     }
 
     .card button {
         width: 100%;
-        margin: 0.5rem 0;
+        margin: 0.4rem 0;
         padding: 10px 20px;
         background-color: #333;
         color: #fff;
@@ -123,13 +131,13 @@ function confirmDelete() {
     }
 
     .card .editDel {
-        margin: 0.5rem 0;
+        margin: 0.2rem 0;
         display: flex;
         justify-content: space-between;
     }
 
     .card #_edit, .card #_del {
-        width: 7.8rem;
+        width: 9rem;
         border: none;
         border-radius: 5px;
         padding: 10px;
