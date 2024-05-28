@@ -58,67 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
     <title>Add New Device</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <link rel="stylesheet" href="Assets/Styles/addDevice.css">
-<style>
-    .formBx {
-        background-color: #fff;
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .formBx h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-    .formBx input[type="text"], .formBx input[type="number"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 1.2rem;
-    }
-
-    .formBx input[type="file"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 1rem;
-    }
-
-    .formBx input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1.2rem;
-    }
-
-    .formBx input[type="submit"]:hover {
-        filter: brightness(1.2);
-    }
-
-    .formBx button {
-        width: 100%;
-        padding: 10px;
-        background-color: transparent;
-        border: 2px solid #333;
-        border-radius: 5px;
-        cursor: pointer;
-        color: #333;
-        font-size: 1.2rem;
-    }
-</style>
 </head>
 <body>
 <div class="navBx">

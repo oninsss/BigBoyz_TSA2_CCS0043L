@@ -66,6 +66,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Invalid request method.";
 }
 
-// Check if form is submitted and update button is clicked
-
 ?>

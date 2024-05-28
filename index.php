@@ -6,63 +6,6 @@
     <title>HJT Electronic Devices Store</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <link rel="stylesheet" href="Assets/Styles/landing.css">
-<style>
-.header {
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .textBx {
-        text-align: center;
-
-        img {
-            width: 40%;
-            margin-bottom: -60px;
-            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 1));
-        }
-        h1 {
-            font-size: 4rem;
-            font-weight: 600;
-            color: #333;
-
-        }
-        p {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #333;
-        }
-    }
-    .btnBx {
-        display: flex;
-        justify-content: center;
-        margin-top: 3rem;
-
-        button {
-            width: 14rem;
-            border: none;
-            padding: 1rem 1.5rem;
-            margin: 0 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1.5rem;
-            font-weight: 400;
-            transition: 0.5s;   
-        }
-        #_viewDevice {
-            background-color: #333;
-            color: #EFEFEF;
-        }
-
-        #_addDevice {
-            border: 2px solid #333;
-            background-color: transparent;
-            color: #333;
-        }
-    }   
-}
-</style>
 </head>
 <body>
 <div class="navBx">

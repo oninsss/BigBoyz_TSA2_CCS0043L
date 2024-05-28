@@ -6,55 +6,6 @@
     <title>Device Details</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <link rel="stylesheet" href="Assets/Styles/deviceDetails.css">
-    <style>
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-            h1 {
-                color: #333;
-                margin-bottom: 10px;
-            }
-
-            .imgBx {
-                height: 300px;
-                width: 100%;
-                overflow: hidden;
-                border-bottom: 1px solid #ccc;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            p {
-                color: #333;
-                margin-bottom: 5px;
-            }
-
-            button {
-                width: 100%;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                background-color: #333;
-                color: #fff;
-                cursor: pointer;
-                transition: 0.5s;
-                margin-top: 10px;
-            }
-
-            button:hover {
-                filter: brightness(1.5);
-            }
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="navBx">
