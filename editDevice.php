@@ -21,9 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Devices</title>
-    <link rel="stylesheet" href="./Assets/Styles/style.css">
+    <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <style>
-
         .card {
             background-color: #fff;
             display: flex;

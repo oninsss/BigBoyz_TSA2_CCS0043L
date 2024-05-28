@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), #FEFEFE),
+                url(https://www.bhmpics.com/downloads/white-hexagons-Wallpapers/1.gradient-hexagonal-background_23-2148952241.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.navBx {
+    position: fixed;    
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+
+    nav {
+        position: relative;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #F5F5F5;
+        z-index: 999;
+
+        .logo {
+            cursor: pointer;
+            h1 {
+                font-size: 2rem;
+                font-weight: 1600;
+                color: #FB8500;
+                cursor: pointer;
+            }
+        }
+        .menu {
+            button {
+                padding: 0.5rem 1.2rem;
+                background-color: transparent;
+                color: #333;
+                border: 1px solid #333;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #333;
+                    color: #EFEFEF;
+                }
+            }
+        }
+    }
+}

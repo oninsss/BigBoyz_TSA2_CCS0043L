@@ -22,11 +22,11 @@ function displayDevices() {
                 echo "<button id='_viewProd' onclick=\"location.href='deviceDetails.php?id={$device['id']}'\">View Product Details</button>";
 
                 echo "<div class='editDel'>";
-                    echo "<form action='editDevice.php' method='POST'>";
+                    echo "<form id='_left' action='editDevice.php' method='POST'>";
                         echo "<input type='hidden' name='id' value='{$device['id']}'>";
                         echo "<input id='_edit' type='submit' name='edit' value='Edit'>";
                     echo "</form>";
-                    echo "<form action='deleteDevice.php' method='POST' onsubmit='return confirmDelete();'>";
+                    echo "<form id='_right' action='deleteDevice.php' method='POST' onsubmit='return confirmDelete();'>";
                         echo "<input type='hidden' name='id' value='{$device['id']}'>";
                         echo "<input id='_del' type='submit' name='delete' value='Delete'>";
                     echo "</form>";
@@ -66,7 +66,7 @@ function confirmDelete() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devices</title>
-    <link rel="stylesheet" href="Assets/Styles/style.css">
+    <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <style>
     body {
         justify-content: start;
@@ -145,10 +145,23 @@ function confirmDelete() {
         margin: 0.2rem 0;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
-    .card #_edit, .card #_del {
-        width: 9rem;
+    form {
+        width: 100%;
+        display: flex;  
+    }
+    #_left {
+        justify-content: start;
+    }
+    #_right {
+        justify-content: end;
+    }
+
+    .card #_edit, 
+    .card #_del {
+        width: 95%;
         border: none;
         border-radius: 5px;
         padding: 10px;

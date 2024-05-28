@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Details</title>
-    <link rel="stylesheet" href="Assets/Styles/style.css">
+    <link rel="stylesheet" href="Assets/Styles/nav-body.css">
     <style>
         .container {
             background-color: #fff;
@@ -31,7 +31,7 @@
             }
 
             p {
-                color: #666;
+                color: #333;
                 margin-bottom: 5px;
             }
 
