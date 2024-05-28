@@ -33,8 +33,22 @@ function displayDevices() {
                 echo "</div>";
 
             echo "</div>";
+            
         }
 
+        echo "</div>";
+        
+        echo "<div class = 'clearButtons'>";
+        echo "<div class='clrAllDvcs'>";
+            echo "<form action='clearAllDevices.php' method='POST'>";
+            echo "<input type='submit' name='clrAD' value='Clear All Devices' onclick=\"return confirm('Are you sure you want to clear all devices?');\">";
+            echo "</form>";
+        echo "</div>";
+        echo "<div class='clrAllPurch'>";
+        echo "<form action='clearAllPurchases.php' method='POST'>";
+        echo "<input type='submit' name='clrAP' value='Clear All Purchases';\">";
+        echo "</form>";
+        echo "</div>";
         echo "</div>";
     } else {
         echo "
@@ -80,6 +94,28 @@ function confirmDelete() {
         gap: 40px;
         max-width: 80%;
         margin-top: 200px;
+    }
+
+    .clearButtons{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .clrAllDvcs input, .clrAllPurch input{
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #c1121f;
+        color: white;
+        transition: 0.5s;
+    }
+
+    .clrAllDvcs input:hover, .clrAllPurch input:hover{
+        
+        transform: scale(1.1);
+        cursor: pointer;
     }
 
     .card {
@@ -234,7 +270,10 @@ function confirmDelete() {
     <?php
         displayDevices();
     ?>
-
+<div class="container">
+    
+    
+</div>
 <script src="Assets/Script/script.js"></script>
 </body>
 </html>
