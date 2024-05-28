@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
         <input type="text" name="deviceName" placeholder="Device Name" required>
         <input type="number" name="deviceStock" placeholder="Stock" required>
         <input type="number" name="devicePrice" placeholder="Price" required>
-        <input type="file" name="deviceImage" placeholder="Image URL">
+        <!-- <input type="file" name="deviceImage" placeholder="Image URL"> -->
 
         <input type="submit" name="addDevice" value="Add Device">
         <button type="button" onclick="window.location.href='index.php'">Back to Home</button>
