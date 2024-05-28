@@ -67,6 +67,7 @@ function confirmDelete() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devices</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
+    <link rel="stylesheet" href="Assets/Styles/viewDevice.css">
     <style>
     body {
         justify-content: start;

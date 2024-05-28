@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase History</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
+    <link rel="stylesheet" href="Assets/Styles/purchHistory.css">
     <style>
         body {
             justify-content: start;

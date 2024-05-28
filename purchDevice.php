@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Device</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
+    <link rel="stylesheet" href="Assets/Styles/purchDevice.css">
     <style>
         .container {
             background-color: #fff;

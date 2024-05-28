@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addDevice"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Device</title>
     <link rel="stylesheet" href="Assets/Styles/nav-body.css">
+    <link rel="stylesheet" href="Assets/Styles/addDevice.css">
 <style>
     .formBx {
         background-color: #fff;
